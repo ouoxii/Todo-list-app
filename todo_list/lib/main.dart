@@ -31,14 +31,23 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final TextEditingController _todoController = TextEditingController();
-  final List<String> _todoList = [];
+  final List<Map<String, dynamic>> _todoList = [];
 
   void _addTodo() {
     setState(() {
       if (_todoController.text.isNotEmpty) {
-        _todoList.add(_todoController.text);
+        _todoList.add({
+          'task': _todoController.text,
+          'isCompleted': false,
+        });
         _todoController.clear(); // 清空輸入框
       }
+    });
+  }
+
+  void _toggleCompletion(int index) {
+    setState(() {
+      _todoList[index]['isCompleted'] = !_todoList[index]['isCompleted'];
     });
   }
 
@@ -76,7 +85,18 @@ class _MyHomePageState extends State<MyHomePage> {
                 itemCount: _todoList.length,
                 itemBuilder: (context, index) {
                   return ListTile(
-                    title: Text(_todoList[index]),
+                    title: Text(
+                      _todoList[index]['task'],
+                      style: TextStyle(
+                        decoration: _todoList[index]['isCompleted']
+                            ? TextDecoration.lineThrough
+                            : TextDecoration.none,
+                        color: _todoList[index]['isCompleted']
+                            ? Colors.grey
+                            : Colors.black,
+                      ),
+                    ),
+                    onTap: () => _toggleCompletion(index), // 點擊切換完成狀態
                     trailing: IconButton(
                       icon: const Icon(Icons.delete),
                       onPressed: () {
