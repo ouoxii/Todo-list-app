@@ -75,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 IconButton(
                   icon: const Icon(Icons.add),
                   onPressed: _addTodo,
-                  tooltip: 'Add Todo',
+                  tooltip: 'Add',
                 ),
               ],
             ),
