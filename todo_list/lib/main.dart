@@ -68,14 +68,14 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: TextField(
                     controller: _todoController,
                     decoration: const InputDecoration(
-                      labelText: 'Enter Todo',
+                      labelText: 'Enter Your Todo',
                     ),
                   ),
                 ),
                 IconButton(
                   icon: const Icon(Icons.add),
                   onPressed: _addTodo,
-                  tooltip: 'Add Todo',
+                  tooltip: 'Add',
                 ),
               ],
             ),
